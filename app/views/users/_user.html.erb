@@ -1,0 +1,19 @@
+<div id="<%= dom_id user %>" class="block">
+  <p class="title"><%=t("Your data")%></p>
+  <div class="block">
+  <p class="subtitle">
+    <strong><%=t("Username")%></strong>
+    <%= user.username %>
+  </p>
+
+  <p class="subtitle">
+    <strong><%=t("email")%></strong>
+    <%= user.email %>
+  </p>
+
+  <p class="subtitle">
+    <strong><%=t("password")%></strong>
+    <%= user.password %>
+  </p>
+  </div>
+</div>

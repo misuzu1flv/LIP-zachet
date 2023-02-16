@@ -1,0 +1,25 @@
+<%= render "shared/page_title", content: t("Results page") %>
+<%= render "shared/page_main_menu" %>
+<%= render "shared/page_heading", content: "#{@test.title} #{t("Test results")}" %>
+
+<div class="section">
+	  <% if @test.test_completions.exists? %>
+	  <% @test.test_completions.each_with_index do |c,index| %>
+	  <% if index % 3 == 0 %>
+	  <div class="tile is-ancestor">
+	  <% end %>
+	  <div class="tile is-4">
+	        <article class="tile is-child box pt-5">
+
+	    <p class="title is-4"> <%= t("User") + ": " + User.find_by(id: c.user_id).username %> </p>
+	    <p class="subtitle is-5">  <%= t("Score") + ": " + c.score.to_s %></p>
+	          </article>
+	  </div>
+	  <% if index % 3 == 2 %>
+	  </div>
+	  <% end %>
+	  <% end %>
+	  <% else %>
+	  <p class="title is-4"> <%= t("No completions") %> </p>
+	  <% end %>
+</div>

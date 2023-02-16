@@ -1,0 +1,68 @@
+<%= render "shared/page_title", content: t("Tests") %>
+<%= render "shared/page_main_menu" %>
+<%= render "shared/page_heading", content: t("Test creation") %>
+
+<div class="section">
+<div class="column is-one-third">
+<div class = "box">
+
+<% if !notice.nil? %>
+<div class="notification">
+<p style="color: green"><%= notice %></p>
+</div>
+<% end %>
+
+<div>
+  <div class="field is-horizontal">
+	  <div class="field-label is-normal">
+  <label class="label"> <%= t("Title") %> </label>
+	  </div>
+	  <div class="field-body">
+	    <div class="field">
+	      <p class="control">
+  <input id="test-title" type="text" class="input is-primary" required="required">
+	      </p>
+	    </div>
+	  </div>
+	</div>
+  <div class="field is-horizontal">
+	  <div class="field-label is-normal">
+  <label class="label"> <%= t("Description") %> </label>
+	  </div>
+	  <div class="field-body">
+	    <div class="field">
+	      <p class="control">
+  <textarea id="test-desc" type="text" class="textarea is-primary"></textarea>
+	      </p>
+	    </div>
+	  </div>
+	</div>
+</div>
+</div>
+  <div id="questions-div">
+  <div class="question-div">
+  <div class = "box mt-3">
+  <label class="label">  <%= t("Question") %> </label>
+  <input class="input is-primary test-questions" type="text" required="required">
+  <label class="label">  <%= t("Answer") %> </label>
+  <input class="input is-primary test-answers" type="text" required="required">
+  </div>
+  </div>
+  </div>
+  <div class="column is-one-third">
+  <button id="add-questions-button" class="button is-primary is-medium"><%= t("Add a question") %> </button>
+  </div>
+  <div class="column is-one-third">
+  <button id="submit-test-button" class= "button is-primary is-medium"><%= t("Submit test") %> </button>
+  </div>
+<div id="Hello">
+</div>
+</div>	
+<div class="block mt-6">
+<%= link_to t("Back to list"), tests_main_path, class: "button is-primary is-light is-medium" %>
+</div>
+</div>
+
+
+
+

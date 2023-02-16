@@ -1,0 +1,34 @@
+
+<%= render "shared/page_title", content: t("Tests") %>
+<%= render "shared/page_main_menu" %>
+<%= render "shared/page_heading", content: t("Tests") %>
+
+<div class="container is-fluid mt-5">
+ <% if !notice.nil? %>
+<div class="notification">
+<p style="color: green"><%= notice %></p>
+</div>
+<% end %>
+
+ <%= link_to t("Make a test"), tests_new_path, class: "button is-primary is-light is-medium" %> 
+</div>
+
+
+<div class="section">
+	  <% @tests.each_with_index do |test,index| %>
+	  <% if index % 3 == 0 %>
+	  <div class="tile is-ancestor">
+	  <% end %>
+	  <div class="tile is-4">
+	        <article class="tile is-child box pt-5">
+
+	    <p class="title is-4"><%= test.title + " " + t("Test") %></p>
+	    <p class="subtitle is-5"> <%= t("Author") + " " + User.find_by(id: test.user_id).username %></p>
+	      <%= link_to t("Show this test"), test, class: "button is-ghost is-medium" %>
+	          </article>
+	  </div>
+	  <% if index % 3 == 2 %>
+	  </div>
+	  <% end %>
+	  <% end %>
+</div>

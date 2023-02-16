@@ -1,0 +1,30 @@
+
+<%= render "shared/page_title", content: t("Results page") %>
+<%= render "shared/page_main_menu" %>
+<%= render "shared/page_heading", content: "#{@test.title} #{t("Test results")}" %>
+
+<div class="section">
+
+<div class="box">
+<p class="title" > <%= t("Score") + ": " + TestCompletion.find_by(user_id: session[:current_user_id], test_id: @test.id).score.to_s %> </p>
+</div>
+
+<% @test.questions.each_with_index do |x, i| %>
+<% result = Result.find_by(user_id: session[:current_user_id], question_id: @test.questions[i].id) %>
+<div class="box"> 
+  <p class="title"> <%= t("Question") %></p>
+  <p class="subtitle"><%=x.question%></p>
+  <p class="subtitle"><%= t("Your answer") %></p>
+  <% if result[:result_value] == @test.questions[i].answer %>
+  <p class="input is-success"><%= result[:result_value] %></p>
+  <% else %> 
+  <p class="input is-danger"><%= result[:result_value] %></p>
+  <p class="subtitle mt-5"> <%= t("Correct answer") %> </p> 
+  <p class="input is-success"> <%= @test.questions[i].answer %></p>
+  <% end %>
+</div>
+<% end %>
+
+<%= link_to t("Back to the test"), @test, class: "button is-primary" %>
+
+</div>

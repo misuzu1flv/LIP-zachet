@@ -1,0 +1,62 @@
+
+<%= render "shared/page_title", content: t('sign_in') %>
+
+<%= render "shared/page_cut_main_menu" %>
+
+
+<%= render "shared/page_heading", content: t('sign_in') %>
+
+<div class="section">
+<div class="columns is-centered"> 
+<div class="column is-one-third">
+<div class = "box">
+
+<% if !notice.nil? %>
+<div class="notification">
+<p style="color: green"><%= notice %></p>
+</div>
+<% end %>
+
+<%= form_tag(sessions_create_path) do %>
+
+<div class="field is-horizontal">
+	<div class="field-label is-normal">
+		<%= label_tag(t("email")) %> <br>
+	</div>
+	<div class="field-body">
+		<div class="field">
+			<p class="control">
+				<%= text_field_tag(:email,"", class: "input is-primary", required: true) %> <br/>
+			</p>
+		</div>
+	</div>
+</div>
+
+<div class="field is-horizontal">
+	<div class="field-label is-normal">
+		<%= label_tag(t("password")) %> <br>
+	</div>
+	<div class="field-body">
+		<div class="field">
+			<p class="control">
+				<%= text_field_tag(:password,"", class: "input is-primary", type: "password", required: true ) %> <br/>
+			</p>
+		</div>
+	</div>
+</div>
+
+<div class="columns is-centered"> 
+<div class="column is-one-third">
+<%= submit_tag(t("sign in"), class: "button is-pulled-left" ) %>
+<% end %>
+</div>
+<div class="column is-one-third">
+<%= link_to t("new user"), users_new_path, class: "button is-pulled-right" %>
+</div>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+

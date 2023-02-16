@@ -1,0 +1,21 @@
+<%= render "shared/page_title", content: "#{@test.title}" %>
+<%= render "shared/page_main_menu" %>
+<%= render "shared/page_heading", content: "#{@test.title} #{t("Test")}" %>
+
+<div class="section">
+<div class="column">
+
+<% @test.questions.each do |q|%>
+<div class="box"> 
+  <p class="title"><%= t("Question") %></p>
+  <p class="subtitle"><%=q.question%></p>
+  <p class="subtitle"><%= t("Your answer") %></p>
+  <%= text_field_tag('','',class: "input is-primary")%>
+</div>
+<% end %>
+<div>
+ <button id="greet-user-button" class="button is-primary" ><%= t("Submit test") %></button>	
+</div>
+
+</div>
+</div>

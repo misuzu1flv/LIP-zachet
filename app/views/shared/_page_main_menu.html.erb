@@ -1,0 +1,16 @@
+<div id="navbar" class="navbar">
+    <div class="navbar-start">
+      <%= link_to t("Main page"), tests_main_path, class: "navbar-item" %>
+      <%= link_to t("View your Profile"), User.find_by(id: session[:current_user_id]), class: "navbar-item" %>
+    </div>
+    <div class="navbar-end">
+        <div class="navbar-item">
+	<%= link_to t("ru"), url_for({locale: "ru"}), class: "button is-white " %>
+	</div>
+	<div class="navbar-item">
+	<%= link_to t("eng"), url_for({locale: "eng"}), class: "button is-white " %>
+	</div>
+	<%= link_to t("Log out"), sessions_exit_url, class: "navbar-item" %>
+    </div>
+</div>
+

@@ -1,0 +1,35 @@
+
+<%= render "shared/page_title", content: "#{@test.title} #{t("Test")}" %>
+<%= render "shared/page_main_menu" %>
+<%= render "shared/page_heading", content: "#{@test.title} #{t("Test")}" %>
+
+<div class="section">
+
+<div class = "box">
+<p style="color: green"><%= notice %></p>
+	<p class="title"> <%= t("Description") %> </p>
+	<p class="subtitle"><%= @test.data %></p>
+	<p class="subtitle"> <%= t("Author") %>
+	<% if @test_author.id == session[:current_user_id] %>
+	<%= t("you") %>
+	<% else %>
+	<%= link_to @test_author.username, @test_author %>
+	<% end %>
+	</p>
+<% if @test.user_id == session[:current_user_id] %> 
+  <%= button_to t("See test results"), test_all_results_path(@test), class: "button is-primary is-medium mt-3" %>
+  <%= button_to t("Destroy this test"), @test, method: :delete, class: "button is-primary is-medium mt-3" %>
+<% else %>
+  <% if !TestCompletion.find_by(user_id: session[:current_user_id], test_id: @test.id).nil? %>
+  <p class="subtitle"> <%= t("Your score") + ": " + TestCompletion.find_by(user_id: session[:current_user_id], test_id: @test.id).score.to_s %> </p>
+  	  <%= button_to t("View your answers"), test_results_path(@test), class: "button is-primary is-medium mt-3" %>
+  <% else %>
+  	<%= button_to t("Start test"), test_answers_path(@test), class: "button is-primary is-medium mt-3" %>
+  <% end %>
+<% end %>
+
+</div>
+<div class="block mt-6">
+  <%= link_to t("Back to tests"), tests_main_path, class: "button is-primary is-light is-medium" %>
+</div>
+</div>

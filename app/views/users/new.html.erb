@@ -1,0 +1,83 @@
+<%= render "shared/page_cut_main_menu" %>
+<%= render "shared/page_title", content: t("Register") %>
+<%= render "shared/page_heading", content: t("Register") %>
+
+<div class="section">
+<div class="columns is-centered"> 
+<div class="column is-one-third">
+<div class = "box">
+
+<% if !notice.nil? %>
+<div class="notification">
+<p style="color: green"><%= notice %></p>
+</div>
+<% end %>
+
+
+<%= form_with(model: @user) do |form| %>
+  <% if @user.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:</h2>
+
+      <ul>
+        <% @user.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+  
+<div class="field is-horizontal">
+	<div class="field-label is-normal">
+		<%= label_tag(t("Username")) %> <br>
+	</div>
+	<div class="field-body">
+		<div class="field">
+			<p class="control">
+				<%= text_field_tag(:username,"", class: "input is-primary", required: true) %> <br/>
+			</p>
+		</div>
+	</div>
+</div>
+
+<div class="field is-horizontal">
+	<div class="field-label is-normal">
+		<%= label_tag(t("email")) %> <br>
+	</div>
+	<div class="field-body">
+		<div class="field">
+			<p class="control">
+				<%= text_field_tag(:email,"", class: "input is-primary", required: true) %> <br/>
+			</p>
+		</div>
+	</div>
+</div>
+
+<div class="field is-horizontal">
+	<div class="field-label is-normal">
+		<%= label_tag(t("password")) %> <br>
+	</div>
+	<div class="field-body">
+		<div class="field">
+			<p class="control">
+				<%= text_field_tag(:password,"", class: "input is-primary", type:"password", required: true) %> <br/>
+			</p>
+		</div>
+	</div>
+</div>
+
+<div class="columns is-centered"> 
+<div class="column is-one-third">
+<%= submit_tag(t("Register"), class: "button is-pulled-left" ) %>
+<% end %>
+</div>
+<div class="column is-one-third">
+<%= link_to t("Back to log in"), root_path, class: "button is-pulled-right" %>
+</div>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+

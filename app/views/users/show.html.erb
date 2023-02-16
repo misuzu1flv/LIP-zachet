@@ -1,0 +1,44 @@
+<%= render "shared/page_title", content: "#{t("User")} #{@user.username}" %>
+<%= render "shared/page_main_menu" %>
+<%= render "shared/page_heading", content: "#{@user.username} - #{t("Profile")}" %>
+
+<% if !notice.nil? %>
+<div class="notification">
+<p style="color: green"><%= notice %></p>
+</div>
+<% end %>
+
+<% if @user.id == session[:current_user_id] %>
+<div class="section">
+<div class="box">
+  <%= render @user %>
+
+  <%= link_to t("Edit profile"), edit_user_path(@user), class: "button is-primary is-light is-medium" %> 
+  <%= link_to t("Delete profile"), @user, method: :delete, class: "button is-primary is-light is-medium" %>
+
+</div>
+</div>
+<% end %>
+
+<div class="section">
+	  <p class="title is-4"><%=t("Tests made by this user")%></p> 
+	  <% k=0 %>
+	  <% @tests.each do |test| %>
+	  <% if test.user_id == @user.id %>
+	  <% if k % 3 == 0 %>
+	  <div class="tile is-ancestor">
+	  <% end %>
+	  <div class="tile is-4">
+	        <article class="tile is-child box pt-5">
+
+	    <p class="title is-4"><%= test.title + " " + t("Test") %> </p>
+	      <%= link_to t("Show this test"), test, class: "button is-ghost is-medium" %>
+	          </article>
+	  </div>
+	  <% if k % 3 == 2 %>
+	  </div>
+	  <% end %>
+	  <% k+=1 %>
+	  <% end %>
+	  <% end %>
+</div>
